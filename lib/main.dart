@@ -84,21 +84,35 @@ class MyApp extends StatelessWidget {
         body: ListView.builder(
           itemCount: listOfFriends.length,
           itemBuilder: (BuildContext context, int index) {
-            return MaterialButton(
-              onPressed: () {},
-              color: Colors.white10,
-              child: ListTile(
-                leading: ClipOval(
-                  child: Image.asset(listOfFriends[index].leading,
-                      height: 50, width: 50, fit: BoxFit.cover),
-                ),
-                title: Text(listOfFriends[index].title),
-                subtitle: Text(listOfFriends[index].subtitle),
-              ),
-            );
+            FriendListItem item = FriendListItem(listOfFriends[index].leading, listOfFriends[index].title, listOfFriends[index].subtitle);
+          return  item;
           },
         ),
       ),
     );
   }
+}
+class FriendListItem extends StatelessWidget {
+
+ String? imageUrl;
+ String? name;
+ String? email;
+  FriendListItem(this.imageUrl, this.name, this.email){
+
+  }
+  @override
+  Widget build(BuildContext context){
+    return MaterialButton(
+      onPressed: () {},
+      color: Colors.white10,
+      child: ListTile(
+        leading: ClipOval(
+          child: Image.asset(imageUrl!,
+              height: 50, width: 50, fit: BoxFit.cover),
+        ),
+        title: Text(name!),
+        subtitle: Text(email!),
+      ),
+    );
+ }
 }
