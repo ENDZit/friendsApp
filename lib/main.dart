@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -91,23 +92,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // home: Scaffold(
-      //   appBar: AppBar(
-      //     title: Text("Friends"),
-      //     backgroundColor: Colors.blue,
-      //   ),
-      //   body: ListView.builder(
-      //     itemCount: listOfFriends.length,
-      //     itemBuilder: (BuildContext context, int index) {
-      //       FriendListItem item = FriendListItem(listOfFriends[index].leading,
-      //           listOfFriends[index].title, listOfFriends[index].subtitle);
-      //       return item;
-      //     },
-      //   ),
-      // ),
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: const MainScreen(),
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomeScreen(),
+        // '/': (context) => const HomeScreen(),
         '/IvanScreen': (context) => const IvanScreen(),
         '/DionisScreen': (context) => const DionisScreen(),
         '/VovaScreen': (context) => const VovaScreen(),
@@ -117,24 +106,63 @@ class MyApp extends StatelessWidget {
         '/AlexScreen': (context) => const AlexScreen(),
         '/SteveScreen': (context) => const SteveScreen(),
         '/SfScreen': (context) => const SfScreen(),
-        '/GoblinScreen':(context) => const GoblinScreen(),
-        '/TwitchScreen':(context) => const TwitchScreen(),
-        '/McqueenScreen':(context)=> const McqueenScreen(),
+        '/GoblinScreen': (context) => const GoblinScreen(),
+        '/TwitchScreen': (context) => const TwitchScreen(),
+        '/McqueenScreen': (context) => const McqueenScreen(),
         '/PepeScreen': (context) => const PepeScreen(),
+        '/FriendsScreen': (context) => const FriendsScreen(),
+        '/InformationPage': (context) => const InformationPage(),
       },
     );
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class MainScreen extends StatelessWidget {
+  const MainScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Friends"),
-        backgroundColor: Colors.blue,
+        title: const Text("Friends app"),
+        backgroundColor: Colors.blueAccent,
+      ),
+      body: const Center(
+        child: Text("Hello world))"),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(color: Colors.blueAccent),
+              child: Text("Navigation"),
+            ),
+            ListTile(
+              title: const Text('My profile'),
+              onTap: () {
+                Navigator.pushNamed(context, '/InformationPage');
+              },
+            ),
+            ListTile(
+              title: const Text("Friends"),
+              onTap: () {
+                Navigator.pushNamed(context, '/FriendsScreen');
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+class FriendsScreen extends StatelessWidget {
+  const FriendsScreen({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Friends list"),cd 
+        backgroundColor: Colors.blueAccent,
       ),
       body: ListView.builder(
         itemCount: listOfFriends.length,
@@ -157,7 +185,7 @@ class FriendListItem extends StatelessWidget {
   String? email;
   String? screen;
 
-  FriendListItem(this.imageUrl, this.name, this.email, this.screen) {}
+  FriendListItem(this.imageUrl, this.name, this.email, this.screen);
 
   @override
   Widget build(BuildContext context) {
@@ -165,7 +193,7 @@ class FriendListItem extends StatelessWidget {
       onPressed: () {
         Navigator.pushNamed(context, '$screen');
       },
-      color: Colors.white10,
+      //color: Colors.white10,
       child: ListTile(
         leading: ClipOval(
           child:
@@ -177,6 +205,7 @@ class FriendListItem extends StatelessWidget {
     );
   }
 }
+                          // SCREENS ! ! ! ! ! !
 
 class IvanScreen extends StatelessWidget {
   const IvanScreen({Key? key}) : super(key: key);
@@ -190,6 +219,7 @@ class IvanScreen extends StatelessWidget {
         ));
   }
 }
+
 class DionisScreen extends StatelessWidget {
   const DionisScreen({Key? key}) : super(key: key);
 
@@ -202,6 +232,7 @@ class DionisScreen extends StatelessWidget {
         ));
   }
 }
+
 class VovaScreen extends StatelessWidget {
   const VovaScreen({Key? key}) : super(key: key);
 
@@ -214,6 +245,7 @@ class VovaScreen extends StatelessWidget {
         ));
   }
 }
+
 class MaxScreen extends StatelessWidget {
   const MaxScreen({Key? key}) : super(key: key);
 
@@ -226,6 +258,7 @@ class MaxScreen extends StatelessWidget {
         ));
   }
 }
+
 class AnastasiaScreen extends StatelessWidget {
   const AnastasiaScreen({Key? key}) : super(key: key);
 
@@ -238,6 +271,7 @@ class AnastasiaScreen extends StatelessWidget {
         ));
   }
 }
+
 class MariaScreen extends StatelessWidget {
   const MariaScreen({Key? key}) : super(key: key);
 
@@ -250,6 +284,7 @@ class MariaScreen extends StatelessWidget {
         ));
   }
 }
+
 class AlexScreen extends StatelessWidget {
   const AlexScreen({Key? key}) : super(key: key);
 
@@ -262,6 +297,7 @@ class AlexScreen extends StatelessWidget {
         ));
   }
 }
+
 class SteveScreen extends StatelessWidget {
   const SteveScreen({Key? key}) : super(key: key);
 
@@ -274,6 +310,7 @@ class SteveScreen extends StatelessWidget {
         ));
   }
 }
+
 class SfScreen extends StatelessWidget {
   const SfScreen({Key? key}) : super(key: key);
 
@@ -286,6 +323,7 @@ class SfScreen extends StatelessWidget {
         ));
   }
 }
+
 class GoblinScreen extends StatelessWidget {
   const GoblinScreen({Key? key}) : super(key: key);
 
@@ -298,6 +336,7 @@ class GoblinScreen extends StatelessWidget {
         ));
   }
 }
+
 class TwitchScreen extends StatelessWidget {
   const TwitchScreen({Key? key}) : super(key: key);
 
@@ -310,6 +349,7 @@ class TwitchScreen extends StatelessWidget {
         ));
   }
 }
+
 class McqueenScreen extends StatelessWidget {
   const McqueenScreen({Key? key}) : super(key: key);
 
@@ -322,6 +362,7 @@ class McqueenScreen extends StatelessWidget {
         ));
   }
 }
+
 class PepeScreen extends StatelessWidget {
   const PepeScreen({Key? key}) : super(key: key);
 
@@ -332,5 +373,174 @@ class PepeScreen extends StatelessWidget {
         body: const Center(
           child: Text('Pepe'),
         ));
+  }
+}
+                                        //INFORMATION PAGE ! ! ! ! !
+enum Gender {
+  male("Male"),
+  female("Female");
+
+  final String text;
+
+  const Gender(this.text);
+}
+class InformationPage extends StatefulWidget {
+  const InformationPage({super.key});
+
+  @override
+  InformationPageState createState() => InformationPageState();
+}
+
+class InformationPageState extends State<InformationPage> {
+  String dropdownValue = 'Student';
+  String globalPassword = "";
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Registration page"),
+        backgroundColor: Colors.blueAccent,
+      ),
+      body:  SingleChildScrollView( child:  Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            // Form fields go here
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Your name',
+                hintText: 'Enter your name',
+              ),
+              validator: (name) {
+                if (name == "") {
+                  return 'Please enter your name';
+                }
+                return null;
+              },
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Your email',
+                hintText: 'Enter your email',
+              ),
+              validator: (email) {
+                if (email == null || email == "") {
+                  return 'Please enter your email';
+                } else if (!email.contains('@')) {
+                  return 'Please enter a valid email';
+                }
+                return null;
+              },
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Your age',
+                hintText: 'Enter your age',
+              ),
+              validator: (age) {
+                if (age == "") {
+                  return 'Please enter your age';
+                }
+                return null;
+              },
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+                LengthLimitingTextInputFormatter(2)
+              ],
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                  labelText: 'Password', hintText: 'Enter your password'),
+              obscureText: true,
+              validator: (password1) {
+                globalPassword = password1.toString();
+                if (password1 == "") {
+                  return 'Please enter your password';
+                }
+                return null;
+              },
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                  labelText: 'Confirm password',
+                  hintText: 'Enter yor password'),
+              obscureText: true,
+              validator: (password2) {
+                if (password2 == "") {
+                  return 'Please enter your password';
+                } else if (password2 != globalPassword) {
+                  return 'Password isnt match';
+                }
+                return null;
+              },
+            ),
+            GenderSelectionWidget(),
+            DropdownButton<String>(
+              value: dropdownValue,
+              onChanged: (String? newValue) {
+                setState(() {
+                  dropdownValue = newValue!;
+                });
+              },
+              items: <String>['Student', 'Worker', 'Pensioner']
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+            ),
+            MaterialButton(
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  // Perform submission logic
+                }
+              },
+              color: Colors.black26,
+              child: Container(
+                constraints:
+                const BoxConstraints(minWidth: 88.0, minHeight: 36.0),
+                alignment: Alignment.center,
+                child: const Text(
+                  'Submit',
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      ),
+    );
+  }
+}
+class GenderSelectionWidget extends StatefulWidget {
+  const GenderSelectionWidget({super.key});
+
+  @override
+  _GenderSelectionWidgetState createState() => _GenderSelectionWidgetState();
+}
+
+class _GenderSelectionWidgetState extends State<GenderSelectionWidget> {
+  Gender? _selectedOption = Gender.male;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: Gender.values
+          .map((option) => RadioListTile<Gender>(
+        title: Text(option.text),
+        value: option,
+        groupValue: _selectedOption,
+        onChanged: (value) {
+          setState(() {
+            _selectedOption = value!;
+          });
+        },
+      ))
+          .toList(),
+    );
   }
 }
